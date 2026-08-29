@@ -1,0 +1,204 @@
+/* =====================================================
+   復縁屋さん コーポレートHP 改善プレビュー用 CSS
+   ベース: site.css に洗練度向上・モダンUI拡張を追加
+   ===================================================== */
+@import url('../assets/css/site.css');
+
+/* ---------- ヒーローセクションの洗練 ---------- */
+.hero-title .hero-highlight {
+  position: relative;
+  display: inline-block;
+  color: var(--rose-deep);
+  font-weight: 700;
+}
+.hero-title .hero-highlight::after {
+  content: "";
+  position: absolute;
+  left: -2px; right: -2px; bottom: 4px;
+  height: 8px;
+  background: rgba(203, 180, 132, 0.35);
+  z-index: -1;
+  border-radius: 2px;
+}
+
+.hero-actions .btn-primary {
+  box-shadow: 0 4px 18px rgba(142,62,73,.35);
+  position: relative;
+  overflow: hidden;
+}
+.hero-actions .btn-primary:hover {
+  box-shadow: 0 8px 26px rgba(111,46,57,.45);
+}
+
+.hero-actions .btn-outline {
+  background: rgba(255,255,255,.9);
+  backdrop-filter: blur(4px);
+  border: 1.5px solid var(--navy-2);
+  color: var(--navy-2);
+}
+.hero-actions .btn-outline:hover {
+  background: var(--navy-2);
+  color: #fff;
+}
+
+.hero-trust-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}
+.hero-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text);
+  background: rgba(255,255,255,.7);
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(230, 225, 215, 0.8);
+  box-shadow: 0 1px 3px rgba(0,0,0,.02);
+}
+.hero-trust-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--gold-light);
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* ヒーロー写真のフレーム装飾強化 */
+.hero-photo {
+  position: relative;
+  box-shadow: 0 16px 36px rgba(28, 36, 50, 0.12);
+  border-radius: 10px;
+}
+.hero-badge {
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+  border: 1px solid var(--navy-line);
+  box-shadow: 0 10px 25px rgba(28, 36, 50, 0.2);
+}
+
+/* ---------- 実績バンドの洗練 ---------- */
+.stats-grid {
+  border-radius: 12px;
+  border: 1px solid rgba(203, 180, 132, 0.4);
+  box-shadow: 0 12px 36px rgba(28, 36, 50, 0.15);
+}
+.stat {
+  transition: transform .25s ease, background .25s ease;
+}
+.stat:hover {
+  background: rgba(255,255,255,.04);
+}
+.stat-num {
+  text-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+
+/* ---------- フレームワークカードの質感向上 ---------- */
+.framework-card {
+  background: rgba(255,255,255,.04);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.08);
+  border-top: 3px solid var(--gold);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.15);
+}
+.framework-card:hover {
+  background: rgba(255,255,255,.08);
+  border-color: var(--gold-light);
+  transform: translateY(-6px);
+  box-shadow: 0 14px 32px rgba(0,0,0,.25);
+}
+
+/* ---------- サービスカードの洗練 ---------- */
+.service-card {
+  border-radius: 10px;
+  border: 1px solid rgba(230, 225, 215, 0.8);
+  transition: all .3s ease;
+  box-shadow: var(--shadow-sm);
+}
+.service-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(32,36,44,.08);
+}
+.service-icon {
+  transition: transform .3s ease;
+}
+.service-card:hover .service-icon {
+  transform: scale(1.08);
+}
+
+/* ---------- 診断プロモの洗練 ---------- */
+.diag-promo {
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(28, 36, 50, 0.2);
+}
+.type-img-grid img {
+  border-radius: 6px;
+  transition: transform .3s ease, box-shadow .3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+}
+.type-img-grid img:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,0,0,.3);
+  z-index: 2;
+  position: relative;
+}
+
+/* ---------- 料金カードの洗練 ---------- */
+.price-card {
+  border-radius: 12px;
+  border: 1px solid rgba(230, 225, 215, 0.8);
+  transition: all .3s ease;
+}
+.price-card--feature {
+  border: 2px solid var(--gold);
+  box-shadow: 0 12px 32px rgba(142,62,73,.12);
+  transform: scale(1.02);
+}
+.price-card--feature:hover {
+  transform: scale(1.04) translateY(-4px);
+  box-shadow: 0 18px 40px rgba(142,62,73,.18);
+}
+
+/* ---------- プレビュー用バナー ---------- */
+.preview-banner {
+  position: fixed;
+  bottom: 84px;
+  right: 20px;
+  background: var(--navy);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  letter-spacing: .05em;
+  animation: previewPulse 3s infinite ease-in-out;
+}
+.preview-banner-badge {
+  background: var(--rose);
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: bold;
+}
+@keyframes previewPulse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
