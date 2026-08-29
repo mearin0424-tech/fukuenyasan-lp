@@ -48,6 +48,53 @@ node tools/generate.cjs
 
 65ページ + sitemap.xml + robots.txt が再生成されます。
 
+## AI開発・修正ワークフロー（Preview-First SKILL 活用マニュアル）
+
+AIアシスタントにコード修正を依頼する際、**「修正案の提示 → プレビュー確認 → ユーザーの承認 → ソースコード反映 & Git Push」** を安全かつ確実に行うための標準フローです。
+
+### ワークフロー図
+
+```mermaid
+flowchart TD
+    Start([ユーザーがAIに修正指示]) --> S0["1. プロンプトで SKILL を指定"]
+    S0 --> S1["2. AIが指示を解析 & 修正案を作成"]
+    S1 --> S2["3. AIがプレビュー（Diff/画面確認URL）を提示"]
+    
+    S2 --> Choice{"4. ユーザーの確認 & 判断"}
+    
+    Choice -- "「修正してほしい」" --> S1
+    Choice -- "「やっぱりやめる」" --> Cancel["作業中断・コード破棄"]
+    Choice -- "「OK」「反映して」" --> S3["5. 本番ソースコードへ反映"]
+    
+    S3 --> S4["6. Git add / commit / push を自動実行"]
+    S4 --> End([最終完了報告・Git Push完了])
+
+    style Start fill:#e1f5fe,stroke:#0288d1
+    style End fill:#e8f5e9,stroke:#388e3c
+    style Cancel fill:#ffebee,stroke:#d32f2f
+    style Choice fill:#fff3e0,stroke:#f57c00
+```
+
+### AIへの指示の出し方（コピペ用プロンプト）
+
+AIに修正作業を依頼するときは、以下の文面をチャットに貼り付けて指示してください：
+
+```text
+`preview-first-workflow` スキルに従って作業を行ってください。
+直接ファイルを編集せず、まずプレビュー（修正案やDiff）を見せてください。
+私が「OK」を出したら本番ファイルへ反映し、GitにCommit & Pushしてください。
+
+【修正依頼内容】
+・（例: ヘッダーのボタンの文言を「今すぐ無料相談」に変更したい）
+・（例: 料金ページのテキストを月々6,300円〜に差し替えてほしい）
+```
+
+### ユーザーの返答パターン
+AIからプレビュー（修正案）が提示されたら、以下のいずれかで返信します：
+- **① 承認（OK）**: 「OK！これで反映して」「問題ないです、Git Pushまでお願いします」
+- **② 修正・再調整**: 「ボタンの文字サイズをもう少し大きくして」「背景色はもう少し薄くできる？」
+- **③ キャンセル**: 「今回は一旦キャンセルで」「変更を取り消してください」
+
 ## SEOの設計
 
 - 事例は **性別 / 地域 / 状況 / 相手のタイプ** でタグ付けし、各軸のハブページ（`region/` 等）に自動集約。
@@ -58,4 +105,4 @@ node tools/generate.cjs
 
 - `tools/generate.cjs` と `admin/index.html` 内の `SITE_URL`（既定 `https://fukuenyasan.jp/`）を本番URLに合わせて調整。
 - フォーム送信先はLPの `../fukuenyasan-lp/api/mail.php` を共用（HP単独配信時は別途バックエンドが必要）。
-- 診断ツールはLPの `../fukuenyasan-lp/diagnosis.html`（12問）へ誘導。
+- 診断ツールはLPの `../fukuenyasan-lp/diagnosis.html`（12问）へ誘導。
